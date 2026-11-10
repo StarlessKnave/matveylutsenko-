@@ -6,7 +6,7 @@ Personal CV website for Matvey Lutsenko: a single static page, hosted on Cloudfl
 
 - `index.html` – the whole site (HTML, CSS and JS in one file)
 - `headshot.jpg` – profile photo used in the nav
-- `Matvei_Lutsenko_CV_2026.pdf` – CV behind the "Download CV" buttons
+- `Matvey_Lutsenko_CV_2026.pdf` – CV behind the "Download CV" buttons
 
 ## Deploying
 
