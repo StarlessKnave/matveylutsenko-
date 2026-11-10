@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matvey Lutsenko — Account Strategist & Builder of Systems</title>
+<meta name="description" content="Matvey Lutsenko — Account Strategist at Google. I build the processes, workflows and tools that help go-to-market teams scale.">
+<meta property="og:title" content="Matvey Lutsenko">
+<meta property="og:description" content="Account Strategist at Google. I build the processes, workflows and tools that help go-to-market teams scale.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://matveylutsenko.com">
+<meta name="theme-color" content="#0b1020">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1020'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='700' font-size='28' fill='%237dd3fc'%3EML%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1020; --bg2:#10172b; --card:#131b33; --line:rgba(255,255,255,.08);
+    --text:#e8ecf5; --muted:#9aa4bd; --accent:#7dd3fc; --accent2:#a78bfa;
+    --paper:#f6f7fb; --ink:#0f172a; --ink-muted:#556079; --paper-line:#e3e6ef;
+    --radius:16px; --max:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;line-height:1.15;letter-spacing:-.02em}
+
+  /* NAV */
+  nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+  nav.scrolled{background:rgba(11,16,32,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{font-family:"Space Grotesk",Inter,system-ui,sans-serif;font-weight:700;color:#fff;font-size:18px;display:flex;align-items:center;gap:10px}
+  .logo span{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--bg);font-size:14px}
+  .avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;padding:2px;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 4px 14px -4px rgba(125,211,252,.5)}
+  .logo{gap:12px}
+  .navlinks{display:flex;gap:28px;align-items:center}
+  .navlinks a{color:var(--muted);font-size:14px;font-weight:500;transition:color .2s}
+  .navlinks a:hover{color:#fff}
+  .navlinks .btn{color:var(--bg)}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:600;font-size:14px;transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer;border:0}
+  .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--bg)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px -10px rgba(125,211,252,.6)}
+  .btn-ghost{border:1px solid rgba(255,255,255,.18);color:#fff;background:rgba(255,255,255,.03)}
+  .btn-ghost:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}
+  .btn svg{width:18px;height:18px}
+  .navlinks .btn{padding:9px 16px}
+
+  /* HERO */
+  .hero{position:relative;background:var(--bg);color:var(--text);padding:150px 0 0;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 80%)}
+  .glow{position:absolute;border-radius:50%;filter:blur(90px);opacity:.45;pointer-events:none}
+  .glow.a{width:520px;height:520px;background:#1d4ed8;top:-180px;right:-120px}
+  .glow.b{width:420px;height:420px;background:#7c3aed;bottom:-200px;left:-140px;opacity:.3}
+  .hero .wrap{position:relative}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:500;color:var(--accent);background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.2);padding:7px 14px;border-radius:999px;margin-bottom:28px}
+  .eyebrow i{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.18)}
+  .hero h1{font-size:clamp(40px,6.4vw,76px);font-weight:700;color:#fff;max-width:900px}
+  .hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lead{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:640px;margin:26px 0 38px}
+  .hero p.lead strong{color:var(--text);font-weight:600}
+  .cta{display:flex;flex-wrap:wrap;gap:12px}
+  .socials{display:flex;gap:10px;margin-top:22px}
+  .socials a{width:44px;height:44px;display:grid;place-items:center;border-radius:12px;border:1px solid var(--line);color:var(--muted);transition:all .2s}
+  .socials a:hover{color:#fff;border-color:rgba(255,255,255,.3);transform:translateY(-2px)}
+  .socials svg{width:20px;height:20px}
+
+
+  .hero-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:56px;align-items:center}
+  .portrait{position:relative;margin:0;justify-self:end;width:100%;max-width:380px}
+  .portrait::before{content:"";position:absolute;inset:-14px -14px 14px 14px;border-radius:24px;background:linear-gradient(135deg,var(--accent),var(--accent2));opacity:.55}
+  .portrait img{position:relative;display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:22px;border:1px solid rgba(255,255,255,.15);box-shadow:0 30px 70px -20px rgba(0,0,0,.6)}
+  .portrait figcaption{position:absolute;left:16px;right:16px;bottom:16px;padding:12px 16px;border-radius:14px;background:rgba(11,16,32,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12)}
+  .portrait figcaption b{display:block;color:#fff;font-size:15px}
+  .portrait figcaption span{font-size:12.5px;color:var(--muted)}
+  @media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:48px}.portrait{justify-self:start;max-width:300px;margin-left:14px}}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 0 12px rgba(125,211,252,.7)}
+  .hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center}
+  .rotator{display:inline-grid;vertical-align:bottom}
+  .rotator em{grid-area:1/1;opacity:0;transform:translateY(40%);filter:blur(6px);transition:opacity .55s,transform .55s,filter .55s}
+  .rotator em.on{opacity:1;transform:none;filter:none}
+  .rotator em.out{opacity:0;transform:translateY(-40%);filter:blur(6px)}
+  .glow{animation:drift 18s ease-in-out infinite alternate}
+  .glow.b{animation-duration:22s}
+  @keyframes drift{to{transform:translate(-80px,60px) scale(1.15)}}
+
+  .console{position:relative;border-radius:20px;background:linear-gradient(180deg,rgba(19,27,51,.92),rgba(13,19,38,.92));border:1px solid rgba(255,255,255,.1);box-shadow:0 40px 80px -30px rgba(0,0,0,.7),0 0 0 1px rgba(125,211,252,.06) inset;overflow:hidden;font-size:14px}
+  .console::before{content:"";position:absolute;inset:-1px;border-radius:20px;padding:1px;background:linear-gradient(140deg,rgba(125,211,252,.6),transparent 40%,transparent 60%,rgba(167,139,250,.6));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+  .console-bar{display:flex;align-items:center;gap:7px;padding:14px 18px;border-bottom:1px solid var(--line);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:var(--muted)}
+  .console-bar i{width:11px;height:11px;border-radius:50%;background:#ff5f57}.console-bar i:nth-child(2){background:#febc2e}.console-bar i:nth-child(3){background:#28c840;margin-right:10px}
+  .live{margin-left:auto;color:#34d399;font-weight:600;display:flex;align-items:center;gap:6px}
+  .live s{width:7px;height:7px;border-radius:50%;background:#34d399;animation:pulse 1.6s infinite}
+  @keyframes pulse{50%{box-shadow:0 0 0 6px rgba(52,211,153,0)}0%{box-shadow:0 0 0 0 rgba(52,211,153,.6)}}
+  .pipe{padding:10px 10px 4px}
+  .row{display:grid;grid-template-columns:30px 1fr 64px;gap:12px;align-items:center;padding:12px 10px;border-radius:12px;transition:background .4s}
+  .row b{display:block;color:#fff;font-weight:600;font-size:14.5px}
+  .row small{display:block;color:var(--muted);font-size:12px}
+  .st{width:26px;height:26px;border-radius:50%;border:2px solid rgba(255,255,255,.15);position:relative;transition:all .3s}
+  .row.active{background:rgba(125,211,252,.07)}
+  .row.active .st{border-color:var(--accent);border-top-color:transparent;animation:spin .8s linear infinite}
+  .row.done .st{border-color:#34d399;background:rgba(52,211,153,.15)}
+  .row.done .st::after{content:"";position:absolute;left:7px;top:3px;width:6px;height:11px;border:solid #34d399;border-width:0 2px 2px 0;transform:rotate(45deg)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .bar{height:5px;border-radius:9px;background:rgba(255,255,255,.08);overflow:hidden}
+  .bar u{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:9px}
+  .row.active .bar u{width:100%;transition:width 1.5s linear}
+  .row.done .bar u{width:100%;background:#34d399}
+  .console-out{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:8px 20px 4px}
+  .console-out div{padding:12px;border-radius:12px;background:rgba(255,255,255,.035);border:1px solid var(--line)}
+  .console-out span{display:block;font-size:11.5px;color:var(--muted)}
+  .console-out b{font-family:"Space Grotesk",Inter,sans-serif;font-size:22px;color:#fff}
+  .loop{padding:12px 20px 16px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#64708d}
+  .loop #loopstate{color:var(--accent)}
+
+  .marquee{background:#0d1328;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:20px 0;position:relative}
+  .marquee::before,.marquee::after{content:"";position:absolute;top:0;bottom:0;width:12%;z-index:1;pointer-events:none}
+  .marquee::before{left:0;background:linear-gradient(90deg,#0d1328,transparent)}
+  .marquee::after{right:0;background:linear-gradient(-90deg,#0d1328,transparent)}
+  .track{display:flex;width:max-content;animation:scroll 45s linear infinite}
+  .track span{font-family:"Space Grotesk",Inter,sans-serif;font-weight:600;font-size:17px;color:#7d87a3;white-space:nowrap;padding:0 28px;display:flex;align-items:center;gap:28px}
+  .track span::after{content:"";width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));margin-left:28px}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  .bcard::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,-20%),rgba(125,211,252,.13),transparent 45%);opacity:0;transition:opacity .3s;pointer-events:none}
+  .bcard:hover::before{opacity:1}
+  .bcard>*{position:relative}
+  @media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:44px}}
+  @media (max-width:420px){.console-out b{font-size:18px}.row{grid-template-columns:26px 1fr 40px;gap:10px}}
+  @media (prefers-reduced-motion:reduce){.glow,.track,.live s{animation:none}}
+
+  .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .tcard{background:#fff;border:1px solid var(--paper-line);border-radius:var(--radius);padding:26px;transition:transform .25s,box-shadow .25s}
+  .tcard:hover{transform:translateY(-3px);box-shadow:0 20px 44px -24px rgba(15,23,42,.25)}
+  .thead{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px}
+  .thead .icon{margin:0;flex:none;width:42px;height:42px}
+  .thead .icon svg{width:21px;height:21px}
+  .thead h3{font-size:18px;margin-bottom:3px}
+  .thead p{font-size:13.5px;color:var(--ink-muted);line-height:1.45}
+  .tchips{display:flex;flex-wrap:wrap;gap:7px}
+  .tchip{font-size:13px;font-weight:500;padding:6px 11px;border-radius:9px;background:var(--paper);border:1px solid var(--paper-line);transition:all .2s}
+  .tchip:hover{border-color:#a5b4fc;background:#eef2ff;color:#3730a3}
+  @media (max-width:1000px){.tgrid{grid-template-columns:1fr 1fr}}
+  @media (max-width:640px){.tgrid{grid-template-columns:1fr}}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:90px;border-top:1px solid var(--line)}
+  .stat{padding:34px 24px 40px;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:0}
+  .stat b{display:block;font-family:"Space Grotesk",Inter,system-ui,sans-serif;font-size:clamp(30px,4vw,44px);color:#fff;font-weight:700;letter-spacing:-.02em}
+  .stat span{font-size:14px;color:var(--muted)}
+
+  /* SECTIONS */
+  section{padding:110px 0}
+  .kicker{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#4f46e5;margin-bottom:14px}
+  .sec-head{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:56px}
+  .sec-head h2{font-size:clamp(30px,4vw,46px)}
+  .sec-head p{color:var(--ink-muted);font-size:17px}
+
+  .builds{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .bcard{position:relative;background:#fff;border:1px solid var(--paper-line);border-radius:var(--radius);padding:32px;transition:transform .25s,box-shadow .25s,border-color .25s;overflow:hidden}
+  .bcard::after{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+  .bcard:hover{transform:translateY(-4px);box-shadow:0 24px 50px -24px rgba(15,23,42,.25);border-color:transparent}
+  .bcard:hover::after{transform:scaleX(1)}
+  .icon{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(125,211,252,.18),rgba(167,139,250,.18));color:#4338ca;margin-bottom:22px}
+  .icon svg{width:24px;height:24px}
+  .bcard h3{font-size:21px;margin-bottom:10px}
+  .bcard p{color:var(--ink-muted);font-size:15.5px}
+  .tag{display:inline-block;margin-top:18px;font-size:12px;font-weight:600;color:#4338ca;background:#eef2ff;padding:5px 11px;border-radius:999px}
+
+  /* PROCESS */
+  .process{background:var(--bg);color:var(--text);position:relative;overflow:hidden}
+  .process .kicker{color:var(--accent)}
+  .process .sec-head p{color:var(--muted)}
+  .process .sec-head h2{color:#fff}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
+  .step{padding:30px 26px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01))}
+  .step::before{counter-increment:s;content:"0" counter(s);font-family:"Space Grotesk",Inter,system-ui,sans-serif;font-weight:700;font-size:15px;color:var(--accent);display:block;margin-bottom:40px}
+  .step h3{font-size:20px;color:#fff;margin-bottom:10px}
+  .step p{font-size:15px;color:var(--muted)}
+
+  /* EXPERIENCE */
+  .timeline{position:relative;border-left:2px solid var(--paper-line);margin-left:8px}
+  .job{position:relative;padding:0 0 56px 40px}
+  .job:last-child{padding-bottom:0}
+  .job::before{content:"";position:absolute;left:-9px;top:6px;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid #6366f1}
+  .job-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-bottom:6px}
+  .job h3{font-size:23px}
+  .job h3 span{color:#6366f1}
+  .meta{font-size:14px;color:var(--ink-muted);font-weight:500}
+  .job .sum{color:var(--ink-muted);margin:6px 0 18px;max-width:780px}
+  .job ul{list-style:none;display:grid;gap:10px;max-width:860px}
+  .job li{position:relative;padding-left:22px;font-size:15.5px;color:#334155}
+  .job li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:8px;border-radius:2px;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+  .job li.built{color:var(--ink);font-weight:500}
+  .job li.built::after{content:"Built";margin-left:8px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#047857;background:#d1fae5;padding:2px 8px;border-radius:999px;vertical-align:2px}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .badge{font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid var(--paper-line)}
+
+  /* SKILLS & EDU */
+  .alt{background:#fff;border-top:1px solid var(--paper-line);border-bottom:1px solid var(--paper-line)}
+  .grid3{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:28px}
+  .panel{background:var(--paper);border:1px solid var(--paper-line);border-radius:var(--radius);padding:30px}
+  .panel h3{font-size:19px;margin-bottom:18px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13.5px;font-weight:500;padding:8px 13px;border-radius:10px;background:#fff;border:1px solid var(--paper-line)}
+  .edu{display:grid;gap:20px}
+  .edu b{display:block;font-size:16px}
+  .edu span{display:block;font-size:14px;color:var(--ink-muted)}
+  .edu small{display:block;font-size:13.5px;color:#64748b;margin-top:4px}
+
+  /* CONTACT */
+  .contact{background:var(--bg);color:var(--text);text-align:center;position:relative;overflow:hidden}
+  .contact h2{font-size:clamp(34px,5vw,58px);color:#fff;max-width:760px;margin:0 auto 20px}
+  .contact p{color:var(--muted);max-width:560px;margin:0 auto 36px;font-size:18px}
+  .contact .cta{justify-content:center}
+  .contact .glow.a{top:auto;bottom:-260px;right:20%}
+  footer{background:var(--bg);color:#5d6782;font-size:13px;border-top:1px solid var(--line);padding:26px 0}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+  @media (max-width:900px){
+    .navlinks a:not(.btn){display:none}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .stat:nth-child(2){border-right:0}
+    .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    .sec-head{grid-template-columns:1fr;gap:14px}
+    .builds{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr 1fr}
+    .grid3{grid-template-columns:1fr}
+    section{padding:80px 0}
+  }
+  @media (max-width:560px){
+    .hero{padding-top:120px}
+    .steps{grid-template-columns:1fr}
+    .step::before{margin-bottom:18px}
+    .stat{padding:24px 16px 28px}
+    .bcard{padding:26px}
+    .job{padding-left:28px}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<nav id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo"><img class="avatar" src="headshot.jpg" alt="Matvey Lutsenko" width="44" height="44">Matvey Lutsenko</a>
+    <div class="navlinks">
+      <a href="#build">What I build</a>
+      <a href="#approach">Approach</a>
+      <a href="#toolkit">Toolkit</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-primary" href="Matvei_Lutsenko_CV_2026.pdf" download>Download CV</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="glow a"></div><div class="glow b"></div>
+  <div class="wrap">
+    <div class="hero-grid"><div class="hero-copy">
+    <div class="eyebrow"><i></i>Account Strategist · Google · Dublin</div>
+    <h1>I build the <span class="rotator" aria-label="processes and tools"><em class="on">processes</em><em>tools</em><em>workflows</em><em>playbooks</em><em>systems</em></span><br>that help teams scale.</h1>
+    <p class="lead">Commercial strategist with a builder's instinct. Across <strong>Google</strong>, <strong>Cloudflare</strong> and <strong>Echobox</strong> I've turned manual, ad-hoc work into repeatable systems: AI diagnostic workflows, experimentation frameworks and data-driven outreach playbooks, built independently and adopted at scale.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="Matvei_Lutsenko_CV_2026.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
+        Download CV
+      </a>
+      <a class="btn btn-ghost" href="mailto:mtvlutsenko@gmail.com">Get in touch</a>
+    </div>
+    <div class="socials">
+      <a href="https://www.linkedin.com/in/matvei-lutsenko" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+      <a href="https://github.com/StarlessKnave" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 00-3.8 23.38c.6.12.83-.26.83-.57v-2c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 011.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.21.7.82.58A12 12 0 0012 .3"/></svg></a>
+      <a href="mailto:mtvlutsenko@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+    </div>
+    </div>
+
+    <div class="console reveal in" aria-hidden="true">
+      <div class="console-bar"><i></i><i></i><i></i><span>matvei / build-loop</span><b class="live"><s></s>running</b></div>
+      <div class="pipe">
+        <div class="row"><div class="st"></div><div><b>Spot the friction</b><small>manual · repetitive · guesswork</small></div><div class="bar"><u></u></div></div>
+        <div class="row"><div class="st"></div><div><b>Design the process</b><small>data-led · built around real workflows</small></div><div class="bar"><u></u></div></div>
+        <div class="row"><div class="st"></div><div><b>Build the tool</b><small>workflow · framework · AI assist · playbook</small></div><div class="bar"><u></u></div></div>
+        <div class="row"><div class="st"></div><div><b>Scale &amp; measure</b><small>roll out · track adoption · iterate</small></div><div class="bar"><u></u></div></div>
+      </div>
+      <div class="loop">loop <span id="loopn">#1</span> · <span id="loopstate">spotting friction…</span></div>
+    </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b data-count="143" data-suffix="%">143%</b><span>Average quota attainment at Cloudflare</span></div>
+      <div class="stat"><b data-count="90" data-suffix="%">90%</b><span>Solution adoption across a 50-business portfolio</span></div>
+      <div class="stat"><b data-count="4" data-suffix="×">4×</b><span>Top Outbound BDR, plus EMEA BDR of the Quarter</span></div>
+      <div class="stat"><b data-count="100.2" data-suffix="%" data-dec="1">100.2%</b><span>Revenue run rate at Google</span></div>
+    </div>
+  </div>
+</header>
+
+
+<main>
+<section id="build">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="kicker">What I build</div><h2>Systems that turn one-off effort into repeatable results.</h2></div>
+      <p>I don't wait for a playbook to exist. When I see friction in how work gets done, I design the process, build the tool and roll it out, then measure whether it worked.</p>
+    </div>
+    <div class="builds">
+      <article class="bcard reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.8 7.2 17l.9-5.4L4.2 7.7l5.4-.8z"/><path d="M5 21h14"/></svg></div>
+        <h3>AI diagnostic workflows</h3>
+        <p>Built AI-powered workflows that diagnose account performance across a portfolio of 50 UK &amp; Ireland businesses, so opportunities surface faster and pitches start from data, not guesswork.</p>
+        <span class="tag">Google · AI &amp; automation</span>
+      </article>
+      <article class="bcard reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6L4.5 18.5A1.7 1.7 0 006 21h12a1.7 1.7 0 001.5-2.5L14 9V3"/><path d="M7 15h10"/></svg></div>
+        <h3>Experimentation frameworks</h3>
+        <p>Architected Value-Based Bidding experiments (tROAS/tCPA) and structured AI expansion across Search AI Max, Performance Max and YouTube, giving clients a repeatable way to test, learn and scale.</p>
+        <span class="tag">Google · Strategy &amp; testing</span>
+      </article>
+      <article class="bcard reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
+        <h3>Data-driven outreach engines</h3>
+        <p>Designed multi-channel outreach strategies tailored to regional verticals and senior technical buyers. The system behind 143% average quota attainment and repeated EMEA top-performer awards.</p>
+        <span class="tag">Cloudflare · Go-to-market</span>
+      </article>
+      <article class="bcard reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
+        <h3>Measurement foundations</h3>
+        <p>Lead first-party measurement set-ups (Consent Mode, Enhanced Conversions and CRM integrations), building the data plumbing that every smarter decision downstream depends on.</p>
+        <span class="tag">Google · Data &amp; measurement</span>
+      </article>
+      <article class="bcard reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0113 0"/><path d="M16 4.5a3.5 3.5 0 010 7M18 14a6.5 6.5 0 013.5 6"/></svg></div>
+        <h3>People &amp; onboarding processes</h3>
+        <p>As New Hire Coach, Interview Panellist and Social Committee Chair for the EMEA BDR organisation, I helped shape how the team hired, ramped and stayed connected.</p>
+        <span class="tag">Cloudflare · Team building</span>
+      </article>
+      <a class="bcard reveal" href="https://github.com/StarlessKnave" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#0b1020,#1e1b4b);color:#fff;border-color:transparent">
+        <div class="icon" style="background:rgba(255,255,255,.1);color:var(--accent)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 00-3.8 23.38c.6.12.83-.26.83-.57v-2c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 011.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.21.7.82.58A12 12 0 0012 .3"/></svg></div>
+        <h3 style="color:#fff">See what I'm building →</h3>
+        <p style="color:#aab3cc">Side projects, scripts and tools I've built independently live on my GitHub. Have a look at the code behind the ideas.</p>
+        <span class="tag" style="background:rgba(125,211,252,.12);color:var(--accent)">GitHub</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="approach">
+  <div class="glow a" style="opacity:.25"></div>
+  <div class="wrap" style="position:relative">
+    <div class="sec-head reveal">
+      <div><div class="kicker">How I work</div><h2>From friction to a system that runs itself.</h2></div>
+      <p>The same loop runs through every role I've had, whether it's a client account, a sales territory or a team process.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h3>Spot the friction</h3><p>Find the manual, repetitive or guesswork-driven step that's slowing results down.</p></div>
+      <div class="step reveal"><h3>Design the process</h3><p>Map a better way, grounded in data and in how people actually work day to day.</p></div>
+      <div class="step reveal"><h3>Build the tool</h3><p>Prototype it independently, whether that's a workflow, a framework, an AI assist or a playbook.</p></div>
+      <div class="step reveal"><h3>Scale &amp; measure</h3><p>Roll it out to clients and teammates, track adoption and impact, and iterate.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="toolkit">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="kicker">Toolkit</div><h2>What I build with.</h2></div>
+      <p>The tools I reach for to take an idea from a manual workaround to a working system, from AI and automation to tracking, data and CRM.</p>
+    </div>
+    <div class="tgrid">
+      <div class="tcard reveal">
+        <div class="thead"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.8 7.2 17l.9-5.4L4.2 7.7l5.4-.8z"/></svg></div><div><h3>AI &amp; automation</h3><p>Building AI diagnostic workflows and automating repetitive work.</p></div></div>
+        <div class="tchips"><span class="tchip">Claude</span><span class="tchip">ChatGPT</span><span class="tchip">Gemini</span><span class="tchip">Custom GPTs &amp; Gems</span><span class="tchip">Zapier</span><span class="tchip">Make</span><span class="tchip">Python (Colab)</span></div>
+      </div>
+      <div class="tcard reveal">
+        <div class="thead"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div><div><h3>Tracking &amp; measurement</h3><p>Consent-aware, first-party tracking that ad platforms can trust.</p></div></div>
+        <div class="tchips"><span class="tchip">Google Tag Manager</span><span class="tchip">Server-side GTM</span><span class="tchip">GA4</span><span class="tchip">Consent Mode v2</span><span class="tchip">Cookiebot</span><span class="tchip">Enhanced Conversions</span><span class="tchip">Stape</span><span class="tchip">Meta Conversions API</span><span class="tchip">LinkedIn Insight Tag</span><span class="tchip">Microsoft UET</span></div>
+      </div>
+      <div class="tcard reveal">
+        <div class="thead"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l15-6v14L3 13z"/><path d="M7 13v5h3v-4"/></svg></div><div><h3>Advertising</h3><p>Value-based bidding and AI campaign strategy across platforms.</p></div></div>
+        <div class="tchips"><span class="tchip">Google Ads</span><span class="tchip">Search AI Max</span><span class="tchip">Performance Max</span><span class="tchip">YouTube Ads</span><span class="tchip">Google Ads API</span><span class="tchip">Offline conversion imports</span><span class="tchip">Meta Ads</span><span class="tchip">LinkedIn Campaign Manager</span><span class="tchip">Microsoft Advertising</span></div>
+      </div>
+      <div class="tcard reveal">
+        <div class="thead"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><div><h3>Data &amp; reporting</h3><p>Turning raw data into reports and decisions.</p></div></div>
+        <div class="tchips"><span class="tchip">Google Sheets (advanced)</span><span class="tchip">Excel</span><span class="tchip">BigQuery</span><span class="tchip">Looker Studio</span><span class="tchip">Meridian (MMM)</span></div>
+      </div>
+      <div class="tcard reveal">
+        <div class="thead"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0113 0"/><path d="M16 4.5a3.5 3.5 0 010 7M18 14a6.5 6.5 0 013.5 6"/></svg></div><div><h3>CRM &amp; go-to-market</h3><p>Pipeline, outreach and signal-based prospecting systems.</p></div></div>
+        <div class="tchips"><span class="tchip">HubSpot</span><span class="tchip">Salesforce</span><span class="tchip">Outreach</span><span class="tchip">Salesloft</span><span class="tchip">LinkedIn Sales Navigator</span><span class="tchip">Clay</span><span class="tchip">Apollo</span></div>
+      </div>
+      <div class="tcard reveal">
+        <div class="thead"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"/></svg></div><div><h3>Web &amp; infrastructure</h3><p>Shipping sites and the plumbing underneath them, like this one.</p></div></div>
+        <div class="tchips"><span class="tchip">Cloudflare</span><span class="tchip">GitHub</span><span class="tchip">HTML &amp; CSS</span><span class="tchip">Shopify</span><span class="tchip">Google Workspace</span><span class="tchip">SPF / DKIM / DMARC</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="kicker">Experience</div><h2>Where I've been building.</h2></div>
+      <p>Four years across ad tech, cloud and AI, partnering with C-level executives, agencies and technical stakeholders across EMEA.</p>
+    </div>
+    <div class="timeline">
+      <div class="job reveal">
+        <div class="job-top"><h3>Account Strategist <span>· Google</span></h3><div class="meta">Aug 2026 – Present · Dublin, Ireland</div></div>
+        <p class="sum">Google Customer Solutions, managing a portfolio of 50 UK &amp; Ireland businesses.</p>
+        <ul>
+          <li class="built">Built AI diagnostic workflows to assess account performance and surface growth opportunities.</li>
+          <li class="built">Architect Value-Based Bidding (tROAS/tCPA) experiments and AI expansion across Search AI Max, PMax and YouTube.</li>
+          <li>Advise clients on first-party measurement, leading Consent Mode, Enhanced Conversions and CRM integrations.</li>
+          <li>Partner with C-level executives and agencies to scale customer acquisition.</li>
+        </ul>
+        <div class="badges"><span class="badge">82% pitch coverage</span><span class="badge">90% solution adoption</span><span class="badge">100.2% revenue run rate</span></div>
+      </div>
+      <div class="job reveal">
+        <div class="job-top"><h3>Enterprise Business Development Representative <span>· Cloudflare</span></h3><div class="meta">Dec 2022 – Jul 2026 · London, UK</div></div>
+        <p class="sum">Accelerated Cloudflare adoption across EMEA, progressing laterally across CEE and enterprise accounts.</p>
+        <ul>
+          <li class="built">Designed data-driven, multi-channel outreach strategies tailored to regional verticals and senior technical stakeholders.</li>
+          <li>Advised clients on CDN, Zero Trust and network security strategies to improve performance and reduce risk.</li>
+          <li>Partnered with marketing, channel and solutions engineering teams to run regional go-to-market campaigns.</li>
+          <li>Represented the EMEA BDR organisation as Social Committee Chair, Interview Panellist and New Hire Coach.</li>
+        </ul>
+        <div class="badges"><span class="badge">143% avg. quota attainment</span><span class="badge">EMEA BDR of the Quarter, Q3–Q4 2024</span><span class="badge">4× Top Outbound BDR</span></div>
+      </div>
+      <div class="job reveal">
+        <div class="job-top"><h3>Business Development Executive <span>· Echobox</span></h3><div class="meta">Jan 2022 – Dec 2022 · London, UK</div></div>
+        <p class="sum">AI-powered publishing platform.</p>
+        <ul>
+          <li>Supported Eastern European digital publishers in using AI and automation to grow audience engagement and revenue.</li>
+          <li>Collaborated with The Associated Press to implement AI-based newsroom optimisation across U.S. markets.</li>
+          <li>Ran market analysis and outreach that expanded the company's footprint across independent and regional publishers.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="grid3">
+      <div class="panel reveal">
+        <h3>Skills</h3>
+        <div class="chips">
+          <span class="chip">Process &amp; workflow design</span>
+          <span class="chip">AI diagnostic workflows</span>
+          <span class="chip">Digital &amp; AI bidding strategy</span>
+          <span class="chip">Performance &amp; attribution analysis</span>
+          <span class="chip">First-party measurement &amp; CRM</span>
+          <span class="chip">Strategic account planning</span>
+          <span class="chip">Consultative selling</span>
+          <span class="chip">Client relationship management</span>
+          <span class="chip">Cross-functional collaboration</span>
+          <span class="chip">Stakeholder &amp; agency engagement</span>
+        </div>
+      </div>
+      <div class="panel reveal">
+        <h3>Education</h3>
+        <div class="edu">
+          <div><b>MSc Digital Anthropology</b><span>University College London (UCL) · 2020–2021</span><small>Thesis: Russian pro-democratic digital journalism and diasporic media networks.</small></div>
+          <div><b>BA Anthropology</b><span>University of Exeter · 2017–2020</span><small>Researched alternative knowledge communities; curated artefacts for the John Douglas Museum.</small></div>
+        </div>
+      </div>
+      <div class="panel reveal">
+        <h3>Languages &amp; beyond work</h3>
+        <div class="edu">
+          <div><b>English &amp; Russian</b><span>Native speaker of both</span></div>
+          <div><b>Mind</b><span>London</span><small>Fundraising for the mental health charity through sporting events across London.</small></div>
+          <div><b>Think Pacific</b><span>Lawaki, Fiji</span><small>Co-led and fundraised for health education programmes with the Fijian Ministry of Sport.</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="glow a"></div>
+  <div class="wrap" style="position:relative">
+    <div class="kicker" style="color:var(--accent)">Contact</div>
+    <h2 class="reveal">Got a process that needs building?</h2>
+    <p class="reveal">I'm always happy to talk about go-to-market, AI workflows, or the tools I'm working on.</p>
+    <div class="cta reveal">
+      <a class="btn btn-primary" href="mailto:mtvlutsenko@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        Email
+      </a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/matvei-lutsenko" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/StarlessKnave" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost" href="Matvei_Lutsenko_CV_2026.pdf" download>Download CV</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© <span id="yr">2026</span> Matvey Lutsenko</span><span>matveylutsenko.com</span></div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !reduce) {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), {threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // count-up stats
+    const so = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return; so.unobserve(e.target);
+      const el = e.target, end = parseFloat(el.dataset.count), dec = +(el.dataset.dec||0), suf = el.dataset.suffix||'';
+      const t0 = performance.now(), dur = 1400;
+      const tick = t => { const p = Math.min((t - t0)/dur, 1), v = end * (1 - Math.pow(1-p, 3));
+        el.textContent = v.toFixed(dec) + suf; if (p < 1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    }), {threshold:.5});
+    document.querySelectorAll('[data-count]').forEach(el => so.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+
+  // progress bar
+  const prog=document.getElementById('progress');
+  const onProg=()=>{const h=document.documentElement;prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'};
+  window.addEventListener('scroll',onProg,{passive:true});onProg();
+
+  // card spotlight
+  document.querySelectorAll('.bcard').forEach(c=>c.addEventListener('pointermove',e=>{
+    const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');}));
+
+  // rotating word
+  const words=[...document.querySelectorAll('.rotator em')];
+  let wi=0;
+  if(!reduce) setInterval(()=>{const cur=words[wi];cur.classList.remove('on');cur.classList.add('out');
+    setTimeout(()=>cur.classList.remove('out'),600);wi=(wi+1)%words.length;words[wi].classList.add('on');},2400);
+
+  // build-loop console
+  const rows=[...document.querySelectorAll('.pipe .row')];
+  const states=['spotting friction…','designing the process…','building the tool…','scaling & measuring…'];
+  const ls=document.getElementById('loopstate'), ln=document.getElementById('loopn');
+  let step=0, loop=1;
+  function tick(){
+    if(step===rows.length){ls.textContent='shipped ✓ — next loop';setTimeout(()=>{rows.forEach(r=>r.classList.remove('done','active'));step=0;loop++;ln.textContent='#'+loop;tick();},1800);return;}
+    if(step>0){rows[step-1].classList.remove('active');rows[step-1].classList.add('done');}
+    rows[step].classList.add('active');ls.textContent=states[step];step++;
+    setTimeout(()=>{if(step===rows.length){rows[step-1].classList.remove('active');rows[step-1].classList.add('done');}tick();},1700);
+  }
+  if(reduce){rows.forEach(r=>r.classList.add('done'));ls.textContent='shipped ✓';} else tick();
+</script>
+</body>
+</html>
