@@ -244,6 +244,32 @@
     .job{padding-left:28px}
   }
 
+
+  /* ===== featured project ===== */
+  #projects{position:relative;overflow:hidden;isolation:isolate;background:#fff;border-top:1px solid var(--paper-line)}
+  .proj{display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:center}
+  .proj-shots{position:relative;height:560px}
+  .shot{position:absolute;width:300px;height:auto;border-radius:16px;border:1px solid var(--paper-line);box-shadow:0 40px 80px -30px rgba(15,23,42,.45);transition:transform .5s}
+  .shot-dark{left:0;top:0;transform:rotate(-4deg)}
+  .shot-light{left:150px;top:90px;transform:rotate(3deg)}
+  .proj-shots:hover .shot-dark{transform:rotate(-6deg) translate(-10px,-6px)}
+  .proj-shots:hover .shot-light{transform:rotate(1deg) translate(10px,4px)}
+  .status{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:#047857;background:#d1fae5;padding:6px 12px;border-radius:999px}
+  .status i{width:7px;height:7px;border-radius:50%;background:#10b981}
+  .proj-copy h3{font-size:clamp(24px,2.6vw,32px);margin:18px 0 12px}
+  .proj-lead{color:var(--ink-muted);font-size:16.5px}
+  .proj-list{list-style:none;display:grid;gap:12px;margin:24px 0}
+  .proj-list li{position:relative;padding-left:26px;color:#334155;font-size:15px}
+  .proj-list li::before{content:"";position:absolute;left:0;top:5px;width:14px;height:14px;border-radius:4px;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+  .proj-list b{color:var(--ink)}
+  .proj-chips{margin-bottom:26px}
+  .proj-chips .chip{background:var(--paper)}
+  .btn-dark{background:var(--ink);color:#fff}
+  .btn-dark:hover{transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(15,23,42,.5)}
+  .btn-outline{border:1px solid var(--paper-line);color:var(--ink);background:#fff}
+  .btn-outline:hover{transform:translateY(-2px);border-color:#a5b4fc}
+  @media (max-width:900px){.proj{grid-template-columns:1fr;gap:40px}.proj-shots{height:470px;max-width:440px}.shot{width:250px}.shot-light{left:120px;top:80px}}
+  @media (max-width:420px){.proj-shots{height:400px}.shot{width:210px}.shot-light{left:95px;top:70px}}
   /* ===== visual effects ===== */
   @property --ang{syntax:"<angle>";initial-value:0deg;inherits:false}
   #cursor-glow{position:fixed;left:0;top:0;width:640px;height:640px;margin:-320px 0 0 -320px;border-radius:50%;pointer-events:none;z-index:45;background:radial-gradient(circle,rgba(96,165,250,.16),rgba(139,92,246,.07) 35%,transparent 65%);opacity:0;transition:opacity .4s;will-change:transform}
@@ -313,6 +339,7 @@
     <a href="#top" class="logo"><img class="avatar" src="headshot.jpg" alt="Matvey Lutsenko" width="44" height="44">Matvey Lutsenko</a>
     <div class="navlinks">
       <a href="#build">What I build</a>
+      <a href="#projects">Projects</a>
       <a href="#approach">Approach</a>
       <a href="#toolkit">Toolkit</a>
       <a href="#experience">Experience</a>
@@ -410,6 +437,39 @@
         <p style="color:#aab3cc">Side projects, scripts and tools I've built independently live on my GitHub. Have a look at the code behind the ideas.</p>
         <span class="tag" style="background:rgba(125,211,252,.12);color:var(--accent)">GitHub</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="blob c1"></div><div class="blob c2"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="kicker">Featured project</div><h2>Tag &amp; Consent Auditor</h2></div>
+      <p>A Chrome extension I designed and built on my own time to answer one question in 30 seconds: is this website's measurement set up properly?</p>
+    </div>
+    <div class="proj reveal">
+      <div class="proj-shots">
+        <img class="shot shot-dark" src="tag-auditor-dark.jpg" alt="Tag &amp; Consent Auditor in dark mode" width="420" height="600" loading="lazy">
+        <img class="shot shot-light" src="tag-auditor-light.jpg" alt="Tag &amp; Consent Auditor auditing a sample site with a score of 18 and three critical issues" width="420" height="600" loading="lazy">
+      </div>
+      <div class="proj-copy">
+        <span class="status"><i></i>Prototype · in testing</span>
+        <h3>A measurement audit for any website, in one click.</h3>
+        <p class="proj-lead">Open a site, click the icon, and get a score, the issues ranked by severity, and a plain-English fix for each. It's built for strategists and marketers, not just tag specialists.</p>
+        <ul class="proj-list">
+          <li><b>Detects the tags</b> and whether they actually fire: GTM, GA4 (including server-side), Google Ads, Meta, LinkedIn, Microsoft UET, TikTok, HubSpot and more.</li>
+          <li><b>Audits Consent Mode v2:</b> defaults, updates, Advanced vs Basic mode, and whether the default is set before tags load.</li>
+          <li><b>Catches what fires before consent:</b> tracking cookies and ad pixels that appear before the visitor accepts.</li>
+          <li><b>Checks conversion tracking:</b> key events, duplicate page views and Enhanced Conversions data.</li>
+          <li><b>Runs entirely in the browser.</b> It only observes, and no data leaves the machine.</li>
+        </ul>
+        <div class="chips proj-chips"><span class="chip">Chrome Extension (MV3)</span><span class="chip">JavaScript</span><span class="chip">Consent Mode v2</span><span class="chip">GA4 &amp; GTM</span><span class="chip">Playwright tests</span></div>
+        <div class="cta proj-cta">
+          <a class="btn btn-dark" href="mailto:mtvlutsenko@gmail.com?subject=Tag%20%26%20Consent%20Auditor%20demo">Ask me for a demo</a>
+          <a class="btn btn-outline" href="https://github.com/StarlessKnave" target="_blank" rel="noopener">More on GitHub</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
