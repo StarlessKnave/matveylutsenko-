@@ -251,7 +251,7 @@
   .key i{width:9px;height:9px;border-radius:50%;background:var(--build)}
 
   /* toolkit */
-  .groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
   .group{padding:28px 28px 30px;border-radius:24px}
   .group > i{display:block;width:56px;height:4px;border-radius:2px;background:var(--c);margin-bottom:20px}
   .group h3{font-size:1.5rem;margin-bottom:14px}
@@ -270,6 +270,60 @@
   footer{color:var(--ink-2);font:400 .8125rem var(--mono);border-top:1px solid var(--rule);padding:22px 0}
   footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
 
+
+  /* proof tags on the map */
+  svg .pill{fill:rgba(255,255,255,.07);stroke:rgba(255,255,255,.22);stroke-width:1}
+  svg .pt{font:500 12px var(--mono);fill:var(--ink)}
+  svg .ln,svg .spur{cursor:pointer}
+
+  /* station card */
+  .net{z-index:3}
+  .scard{position:absolute;z-index:6;width:min(350px,calc(100% - 8px));padding:22px 22px 20px;border-radius:22px;background:linear-gradient(135deg,rgba(40,46,74,.82),rgba(14,17,30,.86));transform-origin:var(--ox,50%) var(--oy,0)}
+  .scard[hidden]{display:none}
+  @media (prefers-reduced-motion:no-preference){.scard{animation:pop .35s var(--ease)}@keyframes pop{from{opacity:0;transform:translateY(6px) scale(.97)}}}
+  .scard .x{position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:var(--ink);cursor:pointer;display:grid;place-items:center}
+  .scard .x:hover{border-color:rgba(255,255,255,.5)}
+  .scard .x svg{width:14px;height:14px}
+  .scard small{display:block;font:400 .75rem var(--mono);letter-spacing:.04em;color:var(--ink-2);padding-right:44px}
+  .scard h3{font-size:1.5rem;margin:8px 0 2px}
+  .scard .r{font-weight:500}
+  .scard ul{list-style:none;display:grid;gap:8px;margin-top:14px}
+  .scard li{position:relative;padding-left:18px;font-size:.9375rem;color:#d5d9e4;text-wrap:pretty}
+  .scard li::before{content:"";position:absolute;left:1px;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--ink-2)}
+  .scard .nums{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+  .scard .nums span{font:400 .6875rem/1.25 var(--mono);color:var(--ink-2);padding:9px 12px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+  .scard .nums b{display:block;font:600 1.125rem/1.2 Geist,sans-serif;letter-spacing:-.02em;color:var(--ink)}
+  .scard .ft{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px}
+  .scard .ls{display:flex;gap:4px}
+  .scard .ls i{width:20px;height:4px;border-radius:2px;background:var(--c)}
+  .scard .ft a{font-weight:500;font-size:.9375rem}
+
+  /* line name that follows the pointer */
+  .tip{position:fixed;left:0;top:0;z-index:60;pointer-events:none;display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;font:500 .8125rem/1 Geist,sans-serif;background:rgba(20,24,40,.9);border:1px solid rgba(255,255,255,.18);opacity:0;transition:opacity .15s}
+  .tip.on{opacity:1}
+  .tip::before{content:"";width:16px;height:4px;border-radius:2px;background:var(--c)}
+
+  /* toolkit folds */
+  .group details{margin-top:14px}
+  .group summary{display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);font-weight:500;font-size:.875rem;cursor:pointer;list-style:none}
+  .group summary::-webkit-details-marker{display:none}
+  .group summary::after{content:"";width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .2s var(--ease)}
+  .group details[open] summary::after{transform:translateY(2px) rotate(225deg)}
+  .group summary:hover{border-color:rgba(255,255,255,.45)}
+  .group details dl{margin-top:16px}
+
+  /* keep the whole map on the first screen of a short laptop */
+  @media (min-width:1001px) and (max-height:800px){
+    .bar .wrap{height:54px}
+    .open{padding-top:26px}
+    h1{font-size:clamp(2.1rem,3.5vw,3rem)}
+    .lead{font-size:1rem;line-height:1.5}
+    .acts{margin-top:14px}
+    .btn{min-height:42px}
+    .elsewhere{display:none}
+    .net{margin-top:4px}
+    .net > .net-head{top:6px}
+  }
   @media (max-width:1000px){
     .links{display:none}
     .open-top{grid-template-columns:1fr;align-items:start}
@@ -309,7 +363,7 @@
 
 <header class="bar">
   <div class="wrap">
-    <a href="#top" class="me"><img src="headshot.jpg" alt="" width="36" height="36"><span>Matvey Lutsenko</span></a>
+    <a href="#top" class="me"><img src="headshot.jpg" alt="" width="36" height="36"><span>Matvey</span></a>
     <nav class="links" aria-label="Sections">
       <a href="#project">Project</a>
       <a href="#approach">How I work</a>
@@ -346,11 +400,12 @@
           <button type="button" data-pick="people" aria-pressed="false" style="--c:var(--people)"><i></i>People &amp; research</button>
         </div>
       </div>
-      <div class="map">
-        <svg class="map-h" viewBox="0 0 1280 420" role="img" aria-labelledby="map-h-t" xmlns="http://www.w3.org/2000/svg"><title id="map-h-t">Career network map: University of Exeter, UCL, Echobox, Cloudflare and Google, plus the Tag &amp; Consent Auditor side project.</title><defs><clipPath id="map-h-face"><circle cx="0" cy="0" r="31"/></clipPath></defs><path class="water" d="M872 0 C 880 110, 990 170, 968 270 C 950 350, 985 390, 990 420 L 1050 420 C 1040 380, 1012 340, 1030 270 C 1052 170, 940 100, 936 0 Z"/><g class="lines"><path class="ln l-gtm" data-line="gtm" pathLength="1" stroke-width="9" d="M533.3 282 L592.5 282 L672.5 202 L932.5 202 L1002.5 132 L1148 132"/><path class="ln l-ads" data-line="ads" pathLength="1" stroke-width="9" d="M1005.5 146 L1007.5 144 L1149.3 144"/><path class="ln l-build" data-line="build" pathLength="1" stroke-width="9" d="M542.2 306 L602.5 306 L682.5 226 L942.5 226 L1012.5 156 L1150.7 156"/><path class="ln l-people" data-line="people" pathLength="1" stroke-width="9" d="M110.9 318 L607.5 318 L687.5 238 L947.5 238 L1017.5 168 L1152 168"/></g><a class="stn side" href="#project" data-lines="ads build"><g><path class="spur l-ads" data-line="ads" stroke-width="6" d="M1054 181 V262"/><path class="spur l-build" data-line="build" stroke-width="6" d="M1066 181 V262"/><rect class="mk" x="1045" y="260" width="30" height="18" rx="9"/><text class="lbl" x="1088" text-anchor="start"><tspan class="here sidek" x="1088" y="262">On the side</tspan><tspan class="sn sn-side" x="1088" y="282">Tag &amp; Consent Auditor</tspan><tspan class="sm" x="1088" y="302">Prototype · in testing</tspan></text></g></a><a class="stn" href="#st-exeter" data-lines="people"><g><rect class="mk" x="98" y="306" width="24" height="24" rx="12"/><text class="lbl" x="98" text-anchor="start"><tspan class="sn" x="98" y="356">University of Exeter</tspan><tspan class="sr" x="98" y="376">BA Anthropology</tspan><tspan class="sm" x="98" y="395">2017–2020</tspan></text></g></a><a class="stn" href="#st-ucl" data-lines="people"><g><rect class="mk" x="318" y="306" width="24" height="24" rx="12"/><text class="lbl" x="318" text-anchor="start"><tspan class="sn" x="318" y="356">UCL</tspan><tspan class="sr" x="318" y="376">MSc Digital Anthropology</tspan><tspan class="sm" x="318" y="395">2020–2021</tspan></text></g></a><a class="stn" href="#st-echobox" data-lines="gtm build people"><g><rect class="mk" x="528" y="270" width="24" height="60" rx="12"/><text class="lbl" x="528" text-anchor="start"><tspan class="sn" x="528" y="356">Echobox</tspan><tspan class="sr" x="528" y="376">Business Development</tspan><tspan class="sm" x="528" y="395">2022 · AI publishing</tspan></text></g></a><a class="stn" href="#st-cloudflare" data-lines="gtm build people"><g><rect class="mk" x="788" y="190" width="24" height="60" rx="12"/><text class="lbl" x="788" text-anchor="start"><tspan class="sn" x="788" y="282">Cloudflare</tspan><tspan class="sr" x="788" y="302">Enterprise BDR</tspan><tspan class="sm" x="788" y="321">2022–2026</tspan><tspan class="sp" x="788" y="340">143% avg. quota</tspan></text></g></a><a class="stn" href="#st-google" data-lines="gtm ads build people"><g><rect class="mk" x="1138" y="120" width="24" height="60" rx="12"/><text class="lbl" x="1150" text-anchor="middle"><tspan class="sn" x="1150" y="68">Google</tspan><tspan class="sr" x="1150" y="88">Account Strategist · 2026–now</tspan><tspan class="sp" x="1150" y="107">100.2% revenue run rate</tspan></text></g></a><g class="trains" aria-hidden="true"><circle class="train" data-line="gtm" r="3.2"><animateMotion dur="5s" repeatCount="indefinite" path="M533.3 282 L592.5 282 L672.5 202 L932.5 202 L1002.5 132 L1148 132"/></circle><circle class="train" data-line="ads" r="3.2"><animateMotion dur="6.4s" repeatCount="indefinite" path="M1005.5 146 L1007.5 144 L1149.3 144"/></circle><circle class="train" data-line="build" r="3.2"><animateMotion dur="7.8s" repeatCount="indefinite" path="M542.2 306 L602.5 306 L682.5 226 L942.5 226 L1012.5 156 L1150.7 156"/></circle><circle class="train" data-line="people" r="3.2"><animateMotion dur="9.2s" repeatCount="indefinite" path="M110.9 318 L607.5 318 L687.5 238 L947.5 238 L1017.5 168 L1152 168"/></circle></g></svg>
-        <svg class="map-v" viewBox="0 0 400 715" role="img" aria-labelledby="map-v-t" xmlns="http://www.w3.org/2000/svg"><title id="map-v-t">Career network map: University of Exeter, UCL, Echobox, Cloudflare and Google, plus the Tag &amp; Consent Auditor side project.</title><defs><clipPath id="map-v-face"><circle cx="0" cy="0" r="25"/></clipPath></defs><path class="water" d="M0 196 C 120 216, 220 168, 400 196 L 400 240 C 230 214, 120 264, 0 244 Z"/><g class="lines"><path class="ln l-gtm" data-line="gtm" pathLength="1" stroke-width="8" d="M33.5 429.4 L33.5 395.7 L77.5 351.7 L77.5 208.7 L116 170.2 L116 98.2"/><path class="ln l-ads" data-line="ads" pathLength="1" stroke-width="8" d="M125.9 175.8 L127 174.7 L127 99.4"/><path class="ln l-build" data-line="build" pathLength="1" stroke-width="8" d="M55.5 437.5 L55.5 404.8 L99.5 360.8 L99.5 217.8 L138 179.3 L138 100.6"/><path class="ln l-people" data-line="people" pathLength="1" stroke-width="8" d="M66.5 672.9 L66.5 409.3 L110.5 365.3 L110.5 222.3 L149 183.8 L149 101.8"/></g><a class="stn side" href="#project" data-lines="ads build"><g><path class="spur l-ads" data-line="ads" stroke-width="5" d="M159 160.5 H204"/><path class="spur l-build" data-line="build" stroke-width="5" d="M159 171.5 H204"/><rect class="mk" x="202" y="151.5" width="18" height="29" rx="9"/><text class="lbl" x="182" text-anchor="start"><tspan class="here sidek" x="182" y="200">On the side</tspan><tspan class="sn sn-side" x="182" y="220">Tag &amp; Consent Auditor</tspan><tspan class="sm" x="182" y="240">Prototype · in testing</tspan></text></g></a><a class="stn" href="#st-exeter" data-lines="people"><g><rect class="mk" x="55.5" y="661" width="22" height="22" rx="11"/><text class="lbl" x="104" text-anchor="start"><tspan class="sn" x="104" y="668">University of Exeter</tspan><tspan class="sr" x="104" y="687">BA Anthropology</tspan><tspan class="sm" x="104" y="705">2017–2020</tspan></text></g></a><a class="stn" href="#st-ucl" data-lines="people"><g><rect class="mk" x="55.5" y="540" width="22" height="22" rx="11"/><text class="lbl" x="104" text-anchor="start"><tspan class="sn" x="104" y="547">UCL</tspan><tspan class="sr" x="104" y="566">MSc Digital Anthropology</tspan><tspan class="sm" x="104" y="584">2020–2021</tspan></text></g></a><a class="stn" href="#st-echobox" data-lines="gtm build people"><g><rect class="mk" x="22.5" y="424.5" width="55" height="22" rx="11"/><text class="lbl" x="110" text-anchor="start"><tspan class="sn" x="110" y="431">Echobox</tspan><tspan class="sr" x="110" y="450">Business Development</tspan><tspan class="sm" x="110" y="468">2022 · AI publishing</tspan></text></g></a><a class="stn" href="#st-cloudflare" data-lines="gtm build people"><g><rect class="mk" x="66.5" y="281.5" width="55" height="22" rx="11"/><text class="lbl" x="144" text-anchor="start"><tspan class="sn" x="144" y="288">Cloudflare</tspan><tspan class="sr" x="144" y="307">Enterprise BDR</tspan><tspan class="sm" x="144" y="325">2022–2026</tspan><tspan class="sp" x="144" y="343">143% avg. quota</tspan></text></g></a><a class="stn" href="#st-google" data-lines="gtm ads build people"><g><rect class="mk" x="105" y="89" width="55" height="22" rx="11"/><text class="lbl" x="166" text-anchor="start"><tspan class="sn" x="166" y="94">Google</tspan><tspan class="sr" x="166" y="113">Account Strategist</tspan><tspan class="sm" x="166" y="131">2026–now · Dublin</tspan><tspan class="sp" x="166" y="149">100.2% revenue run rate</tspan></text></g></a><g class="trains" aria-hidden="true"><circle class="train" data-line="gtm" r="2.9"><animateMotion dur="5s" repeatCount="indefinite" path="M33.5 429.4 L33.5 395.7 L77.5 351.7 L77.5 208.7 L116 170.2 L116 98.2"/></circle><circle class="train" data-line="ads" r="2.9"><animateMotion dur="6.4s" repeatCount="indefinite" path="M125.9 175.8 L127 174.7 L127 99.4"/></circle><circle class="train" data-line="build" r="2.9"><animateMotion dur="7.8s" repeatCount="indefinite" path="M55.5 437.5 L55.5 404.8 L99.5 360.8 L99.5 217.8 L138 179.3 L138 100.6"/></circle><circle class="train" data-line="people" r="2.9"><animateMotion dur="9.2s" repeatCount="indefinite" path="M66.5 672.9 L66.5 409.3 L110.5 365.3 L110.5 222.3 L149 183.8 L149 101.8"/></circle></g></svg>
+      <div class="map" id="map">
+        <svg class="map-h" viewBox="0 0 1280 404" role="img" aria-labelledby="map-h-t" xmlns="http://www.w3.org/2000/svg"><title id="map-h-t">Career network map: University of Exeter, UCL, Echobox, Cloudflare and Google, plus the Tag &amp; Consent Auditor side project.</title><defs><clipPath id="map-h-face"><circle cx="0" cy="0" r="31"/></clipPath></defs><g class="lines"><path class="ln l-gtm" data-line="gtm" pathLength="1" stroke-width="9" d="M533.3 282 L592.5 282 L672.5 202 L932.5 202 L1002.5 132 L1148 132"/><path class="ln l-ads" data-line="ads" pathLength="1" stroke-width="9" d="M1005.5 146 L1007.5 144 L1149.3 144"/><path class="ln l-build" data-line="build" pathLength="1" stroke-width="9" d="M542.2 306 L602.5 306 L682.5 226 L942.5 226 L1012.5 156 L1150.7 156"/><path class="ln l-people" data-line="people" pathLength="1" stroke-width="9" d="M110.9 318 L607.5 318 L687.5 238 L947.5 238 L1017.5 168 L1152 168"/></g><a class="stn side" href="#project" data-lines="ads build"><g><path class="spur l-ads" data-line="ads" stroke-width="6" d="M1054 181 V262"/><path class="spur l-build" data-line="build" stroke-width="6" d="M1066 181 V262"/><rect class="mk" x="1045" y="260" width="30" height="18" rx="9"/><text class="lbl" x="1088" text-anchor="start"><tspan class="here sidek" x="1088" y="262">On the side</tspan><tspan class="sn sn-side" x="1088" y="282">Tag &amp; Consent Auditor</tspan><tspan class="sm" x="1088" y="302">Prototype · in testing</tspan></text></g></a><a class="stn" href="#st-exeter" data-lines="people"><g><rect class="mk" x="98" y="306" width="24" height="24" rx="12"/><text class="lbl" x="98" text-anchor="start"><tspan class="sn" x="98" y="356">University of Exeter</tspan><tspan class="sr" x="98" y="376">BA Anthropology</tspan><tspan class="sm" x="98" y="395">2017–2020</tspan></text></g></a><a class="stn" href="#st-ucl" data-lines="people"><g><rect class="mk" x="318" y="306" width="24" height="24" rx="12"/><text class="lbl" x="318" text-anchor="start"><tspan class="sn" x="318" y="356">UCL</tspan><tspan class="sr" x="318" y="376">MSc Digital Anthropology</tspan><tspan class="sm" x="318" y="395">2020–2021</tspan></text></g></a><a class="stn" href="#st-echobox" data-lines="gtm build people"><g><rect class="mk" x="528" y="270" width="24" height="60" rx="12"/><text class="lbl" x="528" text-anchor="start"><tspan class="sn" x="528" y="356">Echobox</tspan><tspan class="sr" x="528" y="376">Business Development</tspan><tspan class="sm" x="528" y="395">2022 · AI publishing</tspan></text></g></a><a class="stn" href="#st-cloudflare" data-lines="gtm build people"><g><rect class="mk" x="788" y="190" width="24" height="60" rx="12"/><text class="lbl" x="788" text-anchor="start"><tspan class="sn" x="788" y="282">Cloudflare</tspan><tspan class="sr" x="788" y="302">Enterprise BDR</tspan><tspan class="sm" x="788" y="321">2022–2026</tspan></text><rect class="pill" x="788" y="330" width="127" height="22" rx="11"/><text class="pt" style="font-size:12px" x="851.5" y="345" text-anchor="middle">143% avg. quota</text><rect class="pill" x="788" y="356" width="156" height="22" rx="11"/><text class="pt" style="font-size:12px" x="866" y="371" text-anchor="middle">4× Top Outbound BDR</text></g></a><a class="stn" href="#st-google" data-lines="gtm ads build people"><g><rect class="mk" x="1138" y="120" width="24" height="60" rx="12"/><text class="lbl" x="1150" text-anchor="middle"><tspan class="sn" x="1150" y="22">Google</tspan><tspan class="sr" x="1150" y="42">Account Strategist · 2026–now</tspan></text><rect class="pill" x="1057.5" y="51" width="185" height="22" rx="11"/><text class="pt" style="font-size:12px" x="1150" y="66" text-anchor="middle">100.2% revenue run rate</text><rect class="pill" x="1065" y="77" width="170" height="22" rx="11"/><text class="pt" style="font-size:12px" x="1150" y="92" text-anchor="middle">90% solution adoption</text></g></a><g class="trains" aria-hidden="true"><circle class="train" data-line="gtm" r="3.2"><animateMotion dur="5s" repeatCount="indefinite" path="M533.3 282 L592.5 282 L672.5 202 L932.5 202 L1002.5 132 L1148 132"/></circle><circle class="train" data-line="ads" r="3.2"><animateMotion dur="6.4s" repeatCount="indefinite" path="M1005.5 146 L1007.5 144 L1149.3 144"/></circle><circle class="train" data-line="build" r="3.2"><animateMotion dur="7.8s" repeatCount="indefinite" path="M542.2 306 L602.5 306 L682.5 226 L942.5 226 L1012.5 156 L1150.7 156"/></circle><circle class="train" data-line="people" r="3.2"><animateMotion dur="9.2s" repeatCount="indefinite" path="M110.9 318 L607.5 318 L687.5 238 L947.5 238 L1017.5 168 L1152 168"/></circle></g></svg>
+        <svg class="map-v" viewBox="0 0 400 715" role="img" aria-labelledby="map-v-t" xmlns="http://www.w3.org/2000/svg"><title id="map-v-t">Career network map: University of Exeter, UCL, Echobox, Cloudflare and Google, plus the Tag &amp; Consent Auditor side project.</title><defs><clipPath id="map-v-face"><circle cx="0" cy="0" r="25"/></clipPath></defs><g class="lines"><path class="ln l-gtm" data-line="gtm" pathLength="1" stroke-width="8" d="M33.5 429.4 L33.5 395.7 L77.5 351.7 L77.5 208.7 L116 170.2 L116 98.2"/><path class="ln l-ads" data-line="ads" pathLength="1" stroke-width="8" d="M125.9 175.8 L127 174.7 L127 99.4"/><path class="ln l-build" data-line="build" pathLength="1" stroke-width="8" d="M55.5 437.5 L55.5 404.8 L99.5 360.8 L99.5 217.8 L138 179.3 L138 100.6"/><path class="ln l-people" data-line="people" pathLength="1" stroke-width="8" d="M66.5 672.9 L66.5 409.3 L110.5 365.3 L110.5 222.3 L149 183.8 L149 101.8"/></g><a class="stn side" href="#project" data-lines="ads build"><g><path class="spur l-ads" data-line="ads" stroke-width="5" d="M159 160.5 H204"/><path class="spur l-build" data-line="build" stroke-width="5" d="M159 171.5 H204"/><rect class="mk" x="202" y="151.5" width="18" height="29" rx="9"/><text class="lbl" x="182" text-anchor="start"><tspan class="here sidek" x="182" y="200">On the side</tspan><tspan class="sn sn-side" x="182" y="220">Tag &amp; Consent Auditor</tspan><tspan class="sm" x="182" y="240">Prototype · in testing</tspan></text></g></a><a class="stn" href="#st-exeter" data-lines="people"><g><rect class="mk" x="55.5" y="661" width="22" height="22" rx="11"/><text class="lbl" x="104" text-anchor="start"><tspan class="sn" x="104" y="668">University of Exeter</tspan><tspan class="sr" x="104" y="687">BA Anthropology</tspan><tspan class="sm" x="104" y="705">2017–2020</tspan></text></g></a><a class="stn" href="#st-ucl" data-lines="people"><g><rect class="mk" x="55.5" y="540" width="22" height="22" rx="11"/><text class="lbl" x="104" text-anchor="start"><tspan class="sn" x="104" y="547">UCL</tspan><tspan class="sr" x="104" y="566">MSc Digital Anthropology</tspan><tspan class="sm" x="104" y="584">2020–2021</tspan></text></g></a><a class="stn" href="#st-echobox" data-lines="gtm build people"><g><rect class="mk" x="22.5" y="424.5" width="55" height="22" rx="11"/><text class="lbl" x="110" text-anchor="start"><tspan class="sn" x="110" y="431">Echobox</tspan><tspan class="sr" x="110" y="450">Business Development</tspan><tspan class="sm" x="110" y="468">2022 · AI publishing</tspan></text></g></a><a class="stn" href="#st-cloudflare" data-lines="gtm build people"><g><rect class="mk" x="66.5" y="281.5" width="55" height="22" rx="11"/><text class="lbl" x="144" text-anchor="start"><tspan class="sn" x="144" y="288">Cloudflare</tspan><tspan class="sr" x="144" y="307">Enterprise BDR</tspan><tspan class="sm" x="144" y="325">2022–2026</tspan></text><rect class="pill" x="144" y="334" width="127" height="22" rx="11"/><text class="pt" style="font-size:12px" x="207.5" y="349" text-anchor="middle">143% avg. quota</text><rect class="pill" x="144" y="360" width="156" height="22" rx="11"/><text class="pt" style="font-size:12px" x="222" y="375" text-anchor="middle">4× Top Outbound BDR</text></g></a><a class="stn" href="#st-google" data-lines="gtm ads build people"><g><rect class="mk" x="105" y="89" width="55" height="22" rx="11"/><text class="lbl" x="160" text-anchor="start"><tspan class="sn" x="160" y="72">Google</tspan><tspan class="sr" x="160" y="91">Account Strategist</tspan><tspan class="sm" x="160" y="109">2026–now · Dublin</tspan></text><rect class="pill" x="160" y="118" width="122" height="22" rx="11"/><text class="pt" style="font-size:11.5px" x="221" y="133" text-anchor="middle">100.2% run rate</text><rect class="pill" x="288" y="118" width="101" height="22" rx="11"/><text class="pt" style="font-size:11.5px" x="338.5" y="133" text-anchor="middle">90% adoption</text></g></a><g class="trains" aria-hidden="true"><circle class="train" data-line="gtm" r="2.9"><animateMotion dur="5s" repeatCount="indefinite" path="M33.5 429.4 L33.5 395.7 L77.5 351.7 L77.5 208.7 L116 170.2 L116 98.2"/></circle><circle class="train" data-line="ads" r="2.9"><animateMotion dur="6.4s" repeatCount="indefinite" path="M125.9 175.8 L127 174.7 L127 99.4"/></circle><circle class="train" data-line="build" r="2.9"><animateMotion dur="7.8s" repeatCount="indefinite" path="M55.5 437.5 L55.5 404.8 L99.5 360.8 L99.5 217.8 L138 179.3 L138 100.6"/></circle><circle class="train" data-line="people" r="2.9"><animateMotion dur="9.2s" repeatCount="indefinite" path="M66.5 672.9 L66.5 409.3 L110.5 365.3 L110.5 222.3 L149 183.8 L149 101.8"/></circle></g></svg>
       </div>
-      <p class="note">Map not to scale · pick a line to follow it · select a station to jump to it</p>
+      <div class="scard glass" id="scard" role="dialog" aria-labelledby="scard-t" hidden></div>
+      <p class="note">Map not to scale · hover or pick a line to follow it · select a station for the story</p>
     </div>
   </div>
 </div>
@@ -480,33 +535,41 @@
         <h3>Go-to-market</h3>
         <dl>
           <div><dt>Skills</dt><dd>Strategic account planning · Consultative selling · Client relationship management</dd></div>
-          <div><dt>CRM &amp; prospecting</dt><dd>HubSpot · Salesforce · Outreach · Salesloft · LinkedIn Sales Navigator · Clay · Apollo</dd></div>
         </dl>
+        <details><summary>Show all</summary><dl>
+          <div><dt>CRM &amp; prospecting</dt><dd>HubSpot · Salesforce · Outreach · Salesloft · LinkedIn Sales Navigator · Clay · Apollo</dd></div>
+        </dl></details>
       </div>
       <div class="group glass" data-lines="ads" style="--c:var(--ads)"><i></i>
         <h3>Ads &amp; measurement</h3>
         <dl>
           <div><dt>Skills</dt><dd>Digital &amp; AI bidding strategy · Performance &amp; attribution analysis · First-party measurement &amp; CRM</dd></div>
+        </dl>
+        <details><summary>Show all</summary><dl>
           <div><dt>Advertising</dt><dd>Google Ads · Search AI Max · Performance Max · YouTube Ads · Google Ads API · Offline conversion imports · Meta Ads · LinkedIn Campaign Manager · Microsoft Advertising</dd></div>
           <div><dt>Tracking</dt><dd>Google Tag Manager · Server-side GTM · GA4 · Consent Mode v2 · Cookiebot · Enhanced Conversions · Stape · Meta Conversions API · LinkedIn Insight Tag · Microsoft UET</dd></div>
           <div><dt>Data &amp; reporting</dt><dd>Google Sheets (advanced) · Excel · BigQuery · Looker Studio · Meridian (MMM)</dd></div>
-        </dl>
+        </dl></details>
       </div>
       <div class="group glass" data-lines="build" style="--c:var(--build)"><i></i>
         <h3>Build &amp; AI</h3>
         <dl>
           <div><dt>Skills</dt><dd>Process &amp; workflow design · AI diagnostic workflows</dd></div>
+        </dl>
+        <details><summary>Show all</summary><dl>
           <div><dt>AI &amp; automation</dt><dd>Claude · ChatGPT · Gemini · Custom GPTs &amp; Gems · Zapier · Make · Python (Colab)</dd></div>
           <div><dt>Web &amp; infrastructure</dt><dd>Cloudflare · GitHub · HTML &amp; CSS · Shopify · Google Workspace · SPF / DKIM / DMARC <small>Including this site.</small></dd></div>
-        </dl>
+        </dl></details>
       </div>
       <div class="group glass" data-lines="people" style="--c:var(--people)"><i></i>
         <h3>People &amp; research</h3>
         <dl>
           <div><dt>Skills</dt><dd>Cross-functional collaboration · Stakeholder &amp; agency engagement</dd></div>
+        </dl>
+        <details><summary>Show all</summary><dl>
           <div><dt>Languages</dt><dd>English and Russian, native in both</dd></div>
           <div><dt>Beyond work</dt><dd>Mind, London <small>Fundraising for the mental health charity through sporting events across London.</small></dd><dd>Think Pacific, Lawaki, Fiji <small>Co-led and fundraised for health education programmes with the Fijian Ministry of Sport.</small></dd></div>
-        </dl>
+        </dl></details>
       </div>
     </div>
   </div>
@@ -527,6 +590,7 @@
 </section>
 </main>
 
+<div class="tip" id="tip" aria-hidden="true"></div>
 <footer>
   <div class="wrap"><span>© <span id="yr">2026</span> Matvey Lutsenko</span><span>Map not to scale.</span></div>
 </footer>
@@ -550,6 +614,54 @@
     b.addEventListener('pointerenter', () => { if (!locked) show(b.dataset.pick); });
     b.addEventListener('pointerleave', () => { if (!locked) show(null); });
   });
+
+  // station cards: the story of each stop, opened on the map
+  const CARDS = {
+    google: { when: 'Aug 2026 – now · Dublin', name: 'Google', role: 'Account Strategist', pts: ['Built AI diagnostic workflows across a portfolio of 50 UK & Ireland businesses.', 'Architect Value-Based Bidding experiments across Search AI Max, Performance Max and YouTube.'], nums: [['100.2%', 'revenue run rate'], ['90%', 'solution adoption'], ['82%', 'pitch coverage']], lines: ['gtm', 'ads', 'build', 'people'], href: '#st-google' },
+    cloudflare: { when: 'Dec 2022 – Jul 2026 · London', name: 'Cloudflare', role: 'Enterprise Business Development Representative', pts: ['Designed data-driven, multi-channel outreach for regional verticals and senior technical buyers.', 'New Hire Coach, Interview Panellist and Social Committee Chair for the EMEA BDR organisation.'], nums: [['143%', 'avg. quota attainment'], ['4×', 'Top Outbound BDR'], ['Q3–Q4 2024', 'EMEA BDR of the Quarter']], lines: ['gtm', 'build', 'people'], href: '#st-cloudflare' },
+    echobox: { when: 'Jan – Dec 2022 · London', name: 'Echobox', role: 'Business Development Executive', pts: ['Supported Eastern European digital publishers in using AI and automation to grow engagement and revenue.', 'Collaborated with The Associated Press on AI-based newsroom optimisation across U.S. markets.'], lines: ['gtm', 'build', 'people'], href: '#st-echobox' },
+    ucl: { when: '2020 – 2021 · London', name: 'University College London', role: 'MSc Digital Anthropology', pts: ['Thesis: Russian pro-democratic digital journalism and diasporic media networks.'], lines: ['people'], href: '#st-ucl' },
+    exeter: { when: '2017 – 2020 · Exeter', name: 'University of Exeter', role: 'BA Anthropology', pts: ['Researched alternative knowledge communities; curated artefacts for the John Douglas Museum.'], lines: ['people'], href: '#st-exeter' },
+    project: { when: 'On the side · prototype in testing', name: 'Tag & Consent Auditor', role: 'A Chrome extension I built on my own time', pts: ["Audits a website's tags, Consent Mode v2 and conversion tracking in one click.", 'Runs entirely in the browser. It only observes, and no data leaves the machine.'], lines: ['ads', 'build'], href: '#project', more: 'See the project' },
+  };
+  const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  const mapEl = document.getElementById('map'), card = document.getElementById('scard');
+  let opener = null;
+  function closeCard() { if (card.hidden) return; card.hidden = true; if (opener) opener.focus({ preventScroll: true }); opener = null; }
+  function openCard(a) {
+    const id = a.getAttribute('href').replace('#st-', '').replace('#', ''), d = CARDS[id]; if (!d) return;
+    opener = a;
+    card.innerHTML = `<button class="x" type="button" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 2l10 10M12 2 2 12"/></svg></button>
+      <small>${esc(d.when)}</small><h3 id="scard-t">${esc(d.name)}</h3><p class="r">${esc(d.role)}</p>
+      <ul>${d.pts.map(p => `<li>${esc(p)}</li>`).join('')}</ul>
+      ${d.nums ? `<div class="nums">${d.nums.map(n => `<span><b>${n[0]}</b>${n[1]}</span>`).join('')}</div>` : ''}
+      <div class="ft"><span class="ls" aria-hidden="true">${d.lines.map(l => `<i style="--c:var(--${l})"></i>`).join('')}</span><a class="tl" href="${d.href}">${d.more || 'Full details'}</a></div>`;
+    card.hidden = false;
+    const net = card.parentElement.getBoundingClientRect(), mk = a.querySelector('.mk').getBoundingClientRect();
+    const w = card.offsetWidth, h = card.offsetHeight, cx = mk.left + mk.width / 2 - net.left;
+    const left = Math.max(0, Math.min(net.width - w, cx - w / 2));
+    const below = mk.bottom - net.top + 14, above = mk.top - net.top - 14 - h;
+    const top = (mk.top + mk.height / 2 - net.top) < net.height * 0.5 || above < -120 ? below : above;
+    card.style.left = left + 'px'; card.style.top = top + 'px';
+    card.style.setProperty('--ox', (cx - left) + 'px'); card.style.setProperty('--oy', top === below ? '0px' : '100%');
+    card.querySelector('.x').addEventListener('click', closeCard);
+    card.querySelector('.ft a').addEventListener('click', () => { opener = null; card.hidden = true; });
+    card.querySelector('.x').focus({ preventScroll: true });
+  }
+  mapEl.querySelectorAll('a.stn').forEach(a => a.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); if (opener === a) closeCard(); else { card.hidden = true; openCard(a); } }));
+  document.addEventListener('click', e => { if (!card.hidden && !card.contains(e.target)) closeCard(); });
+
+  // hovering a line on the map follows it and names it
+  const NAMES = { gtm: 'Go-to-market', ads: 'Ads & measurement', build: 'Build & AI', people: 'People & research' };
+  const tip = document.getElementById('tip');
+  mapEl.querySelectorAll('.ln, .spur').forEach(l => {
+    const k = l.dataset.line;
+    l.addEventListener('pointerenter', () => { if (!locked) show(k); tip.textContent = NAMES[k]; tip.style.setProperty('--c', `var(--${k})`); tip.classList.add('on'); });
+    l.addEventListener('pointermove', e => { tip.style.transform = `translate(${e.clientX + 14}px, ${e.clientY - 34}px)`; });
+    l.addEventListener('pointerleave', () => { if (!locked) show(null); tip.classList.remove('on'); });
+    l.addEventListener('click', e => { e.stopPropagation(); e.preventDefault(); picks.find(p => p.dataset.pick === k).click(); });
+  });
+
   // rotating word in the headline; the extra words are added here so the HTML reads as one clean sentence
   const rot = document.querySelector('.rotator');
   const tint = ['var(--gtm)', 'var(--ads)', 'var(--build)', 'var(--people)', 'var(--ink)'];
@@ -565,7 +677,7 @@
 
   // liquid-glass highlight follows the pointer
   document.querySelectorAll('.glass').forEach(g => g.addEventListener('pointermove', e => { const r = g.getBoundingClientRect(); g.style.setProperty('--mx', (e.clientX - r.left) + 'px'); g.style.setProperty('--my', (e.clientY - r.top) + 'px'); }, { passive: true }));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && locked) { locked = null; picks.forEach(p => p.setAttribute('aria-pressed','false')); show(null); } });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !card.hidden) { closeCard(); return; } if (e.key === 'Escape' && locked) { locked = null; picks.forEach(p => p.setAttribute('aria-pressed','false')); show(null); } });
 </script>
 </body>
 </html>
