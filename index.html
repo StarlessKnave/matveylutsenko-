@@ -122,6 +122,11 @@
   .open{padding:clamp(32px,4vw,52px) 0 0}
   .open-top{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:end}
   h1{font-size:clamp(2.4rem,4.4vw,4rem);letter-spacing:-.045em;line-height:.98}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  .rotator{display:inline-grid;vertical-align:bottom}
+  .rotator em{grid-area:1/1;font-style:normal;color:var(--c,var(--gtm));opacity:0;transform:translateY(40%);filter:blur(6px);transition:opacity .55s var(--ease),transform .55s var(--ease),filter .55s var(--ease)}
+  .rotator em.on{opacity:1;transform:none;filter:none}
+  .rotator em.out{opacity:0;transform:translateY(-40%);filter:blur(6px)}
   .lead{font-size:1.125rem;color:var(--ink-2);text-wrap:pretty;max-width:46ch}
   .lead b{color:var(--ink);font-weight:600}
   .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
@@ -320,7 +325,7 @@
 <div class="open" id="top">
   <div class="wrap">
     <div class="open-top">
-      <h1>I build the processes and tools that help teams scale.</h1>
+      <h1><span class="sr-only">I build the processes and tools that help teams scale.</span><span aria-hidden="true">I build the <span class="rotator" data-words="tools,workflows,playbooks,systems"><em class="on">processes</em></span><br>that help teams scale.</span></h1>
       <div>
         <p class="lead">I'm <b>Matvey</b>, a commercial strategist with a builder's instinct. At <b>Google</b>, <b>Cloudflare</b> and <b>Echobox</b> I've turned manual, ad-hoc work into repeatable systems: AI diagnostic workflows, experimentation frameworks and data-driven outreach playbooks.</p>
         <div class="acts">
@@ -545,6 +550,19 @@
     b.addEventListener('pointerenter', () => { if (!locked) show(b.dataset.pick); });
     b.addEventListener('pointerleave', () => { if (!locked) show(null); });
   });
+  // rotating word in the headline; the extra words are added here so the HTML reads as one clean sentence
+  const rot = document.querySelector('.rotator');
+  const tint = ['var(--gtm)', 'var(--ads)', 'var(--build)', 'var(--people)', 'var(--ink)'];
+  (rot.dataset.words || '').split(',').filter(Boolean).forEach(w => { const e = document.createElement('em'); e.textContent = w; rot.appendChild(e); });
+  const words = [...rot.querySelectorAll('em')];
+  words.forEach((w, i) => w.style.setProperty('--c', tint[i % tint.length]));
+  let wi = 0;
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(() => {
+    const cur = words[wi]; cur.classList.remove('on'); cur.classList.add('out');
+    setTimeout(() => cur.classList.remove('out'), 600);
+    wi = (wi + 1) % words.length; words[wi].classList.add('on');
+  }, 2400);
+
   // liquid-glass highlight follows the pointer
   document.querySelectorAll('.glass').forEach(g => g.addEventListener('pointermove', e => { const r = g.getBoundingClientRect(); g.style.setProperty('--mx', (e.clientX - r.left) + 'px'); g.style.setProperty('--my', (e.clientY - r.top) + 'px'); }, { passive: true }));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && locked) { locked = null; picks.forEach(p => p.setAttribute('aria-pressed','false')); show(null); } });
