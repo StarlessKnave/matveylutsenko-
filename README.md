@@ -6,6 +6,8 @@ Personal CV website for Matvey Lutsenko: a single static page, hosted on Cloudfl
 
 - `index.html` – the whole site (HTML, CSS and JS in one file)
 - `headshot.jpg` – profile photo used in the nav
+- `og-image.jpg` – image shown when the site is shared as a link
+- `tag-auditor-dark.jpg`, `tag-auditor-light.jpg` – screenshots for the Tag & Consent Auditor section
 - `Matvey_Lutsenko_CV_2026.pdf` – CV behind the "Download CV" buttons
 
 ## Deploying
